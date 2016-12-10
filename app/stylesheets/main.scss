@@ -1,0 +1,108 @@
+@import '../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../../bower_components/bootstrap-material-design/sass/bootstrap-material-design';
+@import '../../bower_components/bootstrap-material-design/sass/ripples';
+@import '../../bower_components/magnific-popup/dist/magnific-popup';
+@import '../../bower_components/bootstrap-material-design-icons/scss/material-icons';
+
+$search-background: url('/img/search-bg.jpg');
+$darken-overlay: rgba(0, 0, 0, 0.5);
+$active-button: #337ab7;
+
+.navbar {
+  margin: 0px;
+}
+.search {
+  margin: 0px;
+  background: $search-background;
+  width: 100%;
+  height: 250px;
+}
+
+#search-form {
+  background: $darken-overlay;
+  position: relative;
+  margin: auto;
+  width: 50%;
+  height: 80%;
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.search-type {
+  background: white;
+  color: black;
+  text-align: center;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.search-type.active {
+  background: $active-button;
+  color: white;
+}
+
+.form.row {
+  margin: 0px;
+}
+
+#search-submit {
+  width: 250px;
+}
+
+#search-term {
+  color: white;
+}
+
+.post {
+  margin-top: 20px;
+}
+
+.post-list {
+  margin: 20px 10px 20px 10px;
+  max-width: 35%;
+	display: inline-block;
+	float: left;
+	height: 600px;
+}
+
+.posts-pagination {
+	float: right;
+	margin-top: 0px;
+	margin-right: 10px;
+}
+
+.posts-panel {
+	overflow: hidden;
+}
+
+.post-list-panel {
+	height: 630px;
+}
+
+.register-form {
+	width: 30%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+#register-form {
+	margin: 30px;
+}
+
+.login-form {
+	width: 30%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+#login-form {
+	margin: 30px;
+}
+
+.new-post-form {
+	width: 60%;
+	margin: auto;
+	margin-top: 20px;
+}
