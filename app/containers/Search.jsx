@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Search extends React.Component {
 	constructor() {
@@ -18,6 +19,10 @@ class Search extends React.Component {
 		this.setState({ searchTerm: event.target.value });
 	}
 
+	onSearchSubmit(event) {
+		this.context.router.push(`/search/${this.state.searchType}/${this.state.searchTerm}`);
+	}
+
 	render() {
 		return (
 			<div className="search container-fluid">
@@ -34,7 +39,7 @@ class Search extends React.Component {
 								<input type="text" id="search-term" className="form-control" value={this.state.searchTerm} onChange={this.onSearchChange.bind(this)} />
 							</div>
 							<div className="form-group col-sm-4">
-								<input type="submit" value="Tìm kiếm" className="btn btn-raised btn-primary btn-lg" id="search-submit"/>
+								<input type="button" value="Tìm kiếm" className="btn btn-raised btn-primary btn-lg" id="search-submit" onClick={this.onSearchSubmit.bind(this)}/>
 							</div>
 						</div>
 					</form>
@@ -44,4 +49,12 @@ class Search extends React.Component {
 	}
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+		return { posts: state.posts }
+}
+
+Search.contextTypes = {
+	router: React.PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps)(Search);

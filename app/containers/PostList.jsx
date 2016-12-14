@@ -34,8 +34,6 @@ export default class PostList extends React.Component {
 		this.setState({
 			posts: this.props.posts.slice(5 * (this.state.page - 1), 5 * (this.state.page - 1) + 5)
 		})
-
-		console.log(this.props.posts);
 	}
 
 	renderPagination() {
@@ -65,7 +63,6 @@ export default class PostList extends React.Component {
 					</div>
 				</div>
 			</div>
-	)
+	  )
+  }
 }
-}
-

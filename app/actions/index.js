@@ -12,13 +12,18 @@ export const ME_FROM_TOKEN = 'ME_FROM_TOKEN';
 export const ME_FROM_TOKEN_SUCCESS = 'ME_FROM_TOKEN_SUCCESS';
 export const ME_FROM_TOKEN_FAILURE = 'ME_FROM_TOKEN_FAILURE';
 export const RESET_TOKEN = 'RESET_TOKEN';
-export const STORE_TOKEN = 'STORE_TOKEN'; 
+export const STORE_TOKEN = 'STORE_TOKEN';
 export const REMOVE_TOKEN = 'REMOVE_TOKEN';
 export const GET_ACCOMMODATION_TYPES = 'GET_ACCOMMODATION_TYPES';
 export const NEW_POST_REQUEST = 'NEW_POST_REQUEST';
 export const NEW_POST_FAILURE = 'NEW_POST_FAILURE';
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS';
 export const GET_POST = 'GET_POST';
+export const GET_ARTICLE = 'GET_ARTICLE';
+export const GET_ARTICLE_LIST = 'GET_ARTICLE_LIST';
+export const GET_POST_FAILURE = 'GET_POST_FAILURE';
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+export const SEARCH_POST = 'SEARCH_POST';
 
 const REGISTER_URL = '/api/accounts/register';
 const LOGIN_URL = '/api/login';
@@ -26,6 +31,9 @@ const GET_POSTS_URI = '/api/posts';
 const GET_ACCOMMODATION_TYPES_URL = '/api/accommodation_types';
 const NEW_POST_URL = '/api/posts/new';
 const GET_POST_URL = '/api/post/';
+const GET_ARTICLE_URL = '/api/news/';
+const GET_ARTICLE_LIST_URL = '/api/news/all';
+const SEARCH_POST_URL = '/api/search/';
 
 export const getPost = (slug) => {
 	let post = axios.get(GET_POST_URL + slug)
@@ -136,7 +144,7 @@ export const getAccommodationTypes = () => {
 	return {
 		type: GET_ACCOMMODATION_TYPES,
 		payload: data
-	} 
+	}
 }
 
 export const submitNewPost = (post) => {
@@ -159,11 +167,11 @@ export const submitNewPost = (post) => {
 	return {
 		type: NEW_POST_REQUEST,
 		payload: data
-	} 
+	}
 }
 
 export const newPostSuccess = (post) => {
-	return { 
+	return {
 		type: NEW_POST_SUCCESS,
 		payload: post
 	}
@@ -172,5 +180,44 @@ export const newPostSuccess = (post) => {
 export const newPostFailure = () => {
 	return {
 		type: NEW_POST_FAILURE
+	}
+}
+
+export const getArticle = (slug) => {
+	let data = axios.get(GET_ARTICLE_URL + slug);
+
+	return {
+		type: GET_ARTICLE,
+		payload: data
+	}
+}
+
+export const getArticleList = () => {
+	let data = axios.get(GET_ARTICLE_LIST_URL);
+
+	return {
+		type: GET_ARTICLE_LIST,
+		payload: data
+	}
+}
+
+export const getPostFailure = () => {
+	return {
+		type: GET_POST_FAILURE
+	}
+}
+
+export const getPostSuccess = (post) => {
+	return {
+		type: GET_POST_SUCCESS,
+		payload: post
+	}
+}
+
+export const searchPost = (type, term) => {
+	let data = axios.get(`${SEARCH_POST_URL}${type}/${term}`);
+	return {
+		type: SEARCH_POST,
+		payload: data
 	}
 }

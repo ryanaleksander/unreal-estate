@@ -1,10 +1,13 @@
-import { GET_POST } from '../actions';
+import { GET_POST, GET_POST_FAILURE, GET_POST_SUCCESS } from '../actions';
 
-export default (state={}, action) => {
+const INITIAL_STATE = { status: null, data: null, error: null}
+
+export default (state=INITIAL_STATE, action) => {
 	switch(action.type) {
 		case GET_POST:
-			return action.payload;
-			break;
+			return { status: "requesting", data: null, error: null};
+		case GET_POST_FAILURE: return { status: "failure", data: null, error: '404'};
+		case GET_POST_SUCCESS: return { status: "success", data: action.payload.data, error: null};
 		default:
 			return state;
 	}

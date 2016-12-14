@@ -52,9 +52,39 @@ keystone.import('models');
 const Post = keystone.list('Post');
 const Account = keystone.list('Account');
 const AccommodationType = keystone.list('Accommodation');
+const Article = keystone.list('Article');
 
-app.get('/api/posts/:slug', function(req, res, next) {
-	Post.model.findOne({ slug: req.params['slug'] })
+app.get('/api/news/all', function(req, res, next) {
+	Article.model.find()
+		.exec()
+		.then(articles => {
+			if (articles) {
+				res.json(articles);
+			}
+		});
+});
+
+app.get('/api/search/:type/:term', function(req, res, next) {
+	let type = req.params['type'] == 1 ? 'Bán' : 'Cho thuê';
+
+	Post.model.find({ type: type, slug: new RegExp(req.params['term'], 'i')})
+		.exec()
+		.then(posts => {
+			res.json(posts);
+		});
+});
+
+app.get('/api/news/:slug', function(req, res, next) {
+	Article.model.findOne({ slug: req.params['slug']})
+		.exec()
+		.then(article => {
+			console.log(article);
+			res.status(200);
+		})
+})
+
+app.get('/api/post/:slug', function(req, res, next) {
+	Post.model.findOne({ slug : req.params['slug'] })
 		.populate('author')
 		.populate('accommodationType')
 		.exec()
@@ -195,8 +225,6 @@ app.post('/api/login', function(req, res, next) {
 
 app.get('/me/from/token', function(req, res, next) {
 	let token = req.body.token || req.query.token || req.headers['x-access-token'];
-	console.log(token);
-
 	if (!token) {
 		return res.status(401).json({
 			error: true,

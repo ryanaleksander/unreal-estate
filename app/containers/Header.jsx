@@ -8,13 +8,6 @@ import { resetToken } from '../actions';
 class Header extends React.Component {
 	constructor() {
 		super();
-
-		this.state = {
-			searchTerm: "",
-		}
-	}
-	onSearchChange(event) {
-		this.setState({searchTerm: event.target.value});
 	}
 
 	renderUser() {
@@ -30,7 +23,7 @@ class Header extends React.Component {
 						</li>
 					</ul>
 				</li>
-			)	
+			)
 		} else {
 			return (
 				<li className="dropdown">
@@ -67,7 +60,11 @@ class Header extends React.Component {
 										>Nhà bán<b className="caret"></b></Link>
 								<ul className="dropdown-menu">
 									<li>
-										<Link to="#">Example</Link>
+										<Link to="#">Bán biệt thự</Link>
+										<Link to="#">Bán căn hộ chung cư</Link>
+										<Link to="#">Bán nhà riêng</Link>
+										<Link to="#">Bán đất nền</Link>
+										<Link to="#">Bán các loại bất động sản khác</Link>
 									</li>
 								</ul>
 							</li>
@@ -76,7 +73,11 @@ class Header extends React.Component {
 										>Nhà cho thuê<b className="caret"></b></Link>
 								<ul className="dropdown-menu">
 									<li>
-										<Link to="#">Example</Link>
+										<Link to="#">Cho thuê căn hộ chung cư</Link>
+										<Link to="#">Cho thuê nhà riêng</Link>
+										<Link to="#">Cho thuê nhà trọ</Link>
+										<Link to="#">Cho thuê văn phòng</Link>
+										<Link to="#">Cho thuê các loại bất động sản khác</Link>
 									</li>
 								</ul>
 							</li>
@@ -85,7 +86,9 @@ class Header extends React.Component {
 										>Tin tức<b className="caret"></b></Link>
 								<ul className="dropdown-menu">
 									<li>
-										<Link to="#">Example</Link>
+										<Link to="#">Tin thị trường</Link>
+										<Link to="#">Tin quy hoạch</Link>
+										<Link to="#">Chính sách - Quy định</Link>
 									</li>
 								</ul>
 							</li>
@@ -93,12 +96,6 @@ class Header extends React.Component {
 						<ul className="nav navbar-nav navbar-right">
 							{this.renderUser()}
 						</ul>
-						<form className="navbar-form navbar-right">
-							<div className="form-group">
-								<input className="form-control col-sm-8" type="text" placeholder="Search"
-										value={this.state.searchTerm} onChange={this.onSearchChange.bind(this)}/>
-							</div>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -118,6 +115,6 @@ const mapDispatchToProps = (dispatch) => {
 			cookie.remove('jwtToken');
 			dispatch(resetToken());
 		}
-	}	
+	}
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

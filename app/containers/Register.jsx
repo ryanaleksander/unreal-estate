@@ -3,6 +3,7 @@ import axios from 'axios';
 import {browserHistory} from 'react-router';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import cookie from 'react-cookie';
 
 import RegisterForm from '../components/RegisterForm';
 import asyncAccountValidate from '../utils/account_async_validate';
@@ -18,7 +19,7 @@ const register = (values, dispatch) => {
 					dispatch(registerFailure(response.payload))
 					reject(data);
 				} else {
-					sessionStorage.setItem('jwtToken', response.payload.data.token);
+					cookie.save('jwtToken', response.payload.data.token);
 					dispatch(registerSuccess(response.payload.data.account));
 					resolve();
 					browserHistory.push('/');
