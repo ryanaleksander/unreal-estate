@@ -71,7 +71,7 @@ class NewPostForm extends React.Component {
 									<label className="col-md-3 control-label" htmlFor="input-accommodation">Loại nhà đất</label>
 									<div className="col-md-9">
 										<Field component="select" className="form-control" id="input-accommodation" name="accommodation">
-											{ this.props.accommodationTypes.map(type => <option key={type.key} value={type.key}>{type.name}</option>) }
+											{ this.props.accommodationTypes.map(type => <option key={type.key} value={type._id}>{type.name}</option>) }
 										</Field>
 									</div>
 								</div>

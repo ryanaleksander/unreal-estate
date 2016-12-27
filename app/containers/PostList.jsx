@@ -7,7 +7,7 @@ export default class PostList extends React.Component {
 		this.state = {
 			currentPosts: this.props.posts,
 		  page: 1,
-			pages: Math.floor(this.props.posts.length / 5)  + 1
+			pages: Math.floor(this.props.posts.length / 6)  + 1
 	  }
   }
 
@@ -44,6 +44,27 @@ export default class PostList extends React.Component {
 
 		return rows;
 	}
+
+  onLeftArrowClick(event) {
+    if (event.currentTarget.className != "disabled") {
+      let page = this.state.page - 1;
+      this.setState({ page });
+  		this.setState({
+  			posts: this.props.posts.slice(5 * (page - 1), 5 * (page - 1) + 5)
+  		})
+    }
+  }
+
+  onRightArrowClick(event) {
+    if (event.currentTarget.className != "disabled") {
+      let page = this.state.page + 1;
+      this.setState({ page });
+  		this.setState({
+  			posts: this.props.posts.slice(5 * (page - 1), 5 * (page - 1) + 5)
+  		})
+    }
+  }
+
   render() {
     return (
       <div className="post-list container">
@@ -56,9 +77,9 @@ export default class PostList extends React.Component {
 							{this.renderPosts()}
 						</div>
 						<ul className="pagination posts-pagination">
-							<li className={this.state.page == 1 ? "disabled" : ""}><a href="javascript:void(0)">«</a></li>
+							<li className={this.state.page == 1 ? "disabled" : ""} onClick={this.onLeftArrowClick.bind(this)}><a href="javascript:void(0)">«</a></li>
 							{this.renderPagination()}
-							<li className={this.state.page == this.state.pages ? "disabled" : ""}><a href="javascript:void(0)">»</a></li>
+							<li className={this.state.page == this.state.pages ? "disabled" : ""} onClick={this.onRightArrowClick.bind(this)}><a href="javascript:void(0)">»</a></li>
 						</ul>
 					</div>
 				</div>

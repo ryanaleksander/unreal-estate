@@ -12,7 +12,7 @@ export default class Article extends React.Component {
         <div className="row-content">
           <h4 className="list-group-item-heading"><Link href={`/news/${this.props.slug}`}>{this.props.title}</Link></h4>
           <p className="list-group-item-text">
-            <div dangerouslySetInnerHTML={{__html: this.props.content.brief}} />
+            <div dangerouslySetInnerHTML={{__html: this.props.content.brief}} class="brief"/>
           </p>
         </div>
       </div>

@@ -163,6 +163,7 @@ export const submitNewPost = (post) => {
 	form.append('type', post.type);
 	form.append('account', post.account.email);
 	form.append('area', post.area);
+	form.append('video', post.video);
 	let data = axios.post(NEW_POST_URL, form);
 	return {
 		type: NEW_POST_REQUEST,
@@ -215,7 +216,8 @@ export const getPostSuccess = (post) => {
 }
 
 export const searchPost = (type, term) => {
-	let data = axios.get(`${SEARCH_POST_URL}${type}/${term}`);
+	console.log(term.replace(" ", "-"))
+	let data = axios.get(`${SEARCH_POST_URL}${type}/${term.replace(" ", "-")}`);
 	return {
 		type: SEARCH_POST,
 		payload: data

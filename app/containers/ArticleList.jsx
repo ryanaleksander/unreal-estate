@@ -30,6 +30,27 @@ export default class ArticleList extends React.Component {
 			articles: this.props.articles.slice(5 * (page - 1), 5 * (page - 1) + 5)
 		})
 	}
+
+  onLeftArrowClick(event) {
+    if (event.currentTarget.className != "disabled") {
+      let page = this.state.page - 1;
+      this.setState({ page });
+  		this.setState({
+  			articles: this.props.articles.slice(5 * (page - 1), 5 * (page - 1) + 5)
+  		})
+    }
+  }
+
+  onRightArrowClick(event) {
+    if (event.currentTarget.className != "disabled") {
+      let page = this.state.page + 1;
+      this.setState({ page });
+  		this.setState({
+  			articles: this.articles.posts.slice(5 * (page - 1), 5 * (page - 1) + 5)
+  		})
+    }
+  }
+
   renderPagination() {
     let rows = [];
     for (var i=1; i <= this.state.pages; i++) {
@@ -51,9 +72,9 @@ export default class ArticleList extends React.Component {
 							{this.renderArticles()}
 						</div>
 						<ul className="pagination posts-pagination">
-							<li className={this.state.page == 1 ? "disabled" : ""}><a href="javascript:void(0)">«</a></li>
+							<li className={this.state.page == 1 ? "disabled" : ""} onClick={this.onLeftArrowClick.bind(this)}><a href="javascript:void(0)">«</a></li>
 							{this.renderPagination()}
-							<li className={this.state.page == this.state.pages ? "disabled" : ""}><a href="javascript:void(0)">»</a></li>
+							<li className={this.state.page == this.state.pages ? "disabled" : ""} onClick={this.onRightArrowClick.bind(this)}><a href="javascript:void(0)">»</a></li>
 						</ul>
 					</div>
 				</div>

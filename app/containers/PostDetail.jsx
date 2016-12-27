@@ -26,19 +26,19 @@ class PostDetail extends React.Component {
 	renderPostContent(post) {
 		switch(this.state.tab) {
 			case 1: return (
-				<div className="post-content">
+				<div className="post-content" style={{paddingBottom: "20px"}}>
 					<img src={`/img/${post.image.filename}`} style={{ maxWidth: "80%", maxHeight: "80%"}}/>
 				</div>
 			)
 			case 2: return (
-				<div className="post-content">
+				<div className="post-content" style={{paddingBottom: "20px"}}>
 					<iframe width="640" height="480"
 						src={`https://www.youtube.com/embed/${getId(post.videoUrl)}`} frameborder="0">
 					</iframe>
 				</div>
 			)
 			case 3: return (
-				<div className="post-content">
+				<div className="post-content" style={{paddingBottom: "20px"}}>
 					<div className="info" style={{border: "#337ab7 2px solid", width: "auto", height: "100px", marginLeft: "40px", marginRight: "40px"}}>
 						<div className="account" style={{ float: "left", width: "40%", marginLeft: "40px", marginBottom: "20px", textAlign: "left"}}>
 							<img className="circle" src="/img/user.png" style={{ width: "80px", height: "80px", float: "left", marginTop: "5px" }}/>
